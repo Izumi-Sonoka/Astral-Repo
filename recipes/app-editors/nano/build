@@ -3,7 +3,7 @@ set -e
 
 echo "Downloading nano source..."
 
-wget -q https://www.nano-editor.org/dist/v8/nano-8.6.tar.xz
+wget https://www.nano-editor.org/dist/v8/nano-8.6.tar.xz
 tar xf nano-8.6.tar.xz
 cd nano-8.6
 
