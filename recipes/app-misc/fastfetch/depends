@@ -1,3 +1,5 @@
+gcc
 cmake
 make
-gcc
+pkg-config
+libc
