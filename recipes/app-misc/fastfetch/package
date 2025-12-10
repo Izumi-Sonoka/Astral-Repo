@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+mkdir -p "$PKGDIR/usr/bin"
+cp build/fastfetch "$PKGDIR/usr/bin/"
