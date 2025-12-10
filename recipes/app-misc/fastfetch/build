@@ -1,14 +1,20 @@
 #!/bin/sh
 set -e
 
-echo "Extracting FastFetch..."
-tar -xf "2.56.0.tar.gz"
-cd "fastfetch-2.56.0" || exit 1
+src_archive=$(ls *.tar.gz | head -n1)
+
+echo "Extracting $src_archive..."
+tar -xf "$src_archive"
+
+src_dir=$(tar -tf "$src_archive" | head -n1 | cut -f1 -d"/")
+cd "$src_dir" || exit 1
 
 echo "Creating build directory..."
 mkdir -p build
 cd build
 
 echo "Running CMake..."
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PKGDIR/usr"
 cmake --build .
+
+echo "Copying files to package directory... idek"
