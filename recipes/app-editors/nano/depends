@@ -1,4 +1,4 @@
 make
 gcc
-binutils
+file
 ncurses
