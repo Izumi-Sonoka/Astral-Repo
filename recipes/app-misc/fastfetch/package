@@ -1,5 +1,13 @@
 #!/bin/sh
 set -e
 
+echo "Changing Dir to build..."
+mkdir -p build
+cd build
+
+echo "Cmake..."
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build .
+
 mkdir -p "$PKGDIR/usr/bin"
 cp build/fastfetch "$PKGDIR/usr/bin/"
