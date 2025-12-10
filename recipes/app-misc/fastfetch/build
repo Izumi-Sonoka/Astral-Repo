@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+
+SRC="$PWD/Fastfetch-1.16.0"
+DESTDIR="${DESTDIR:-/tmp/astral-build}"
+
+cd "$SRC" || exit 1
+
+# Minimal build
+mkdir -p build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+make
+DESTDIR="$DESTDIR" make install
