@@ -1,5 +1,10 @@
 #!/bin/sh
 set -e
+
 tar -xf "fastfetch-2.56.0.tar.gz"
 cd "fastfetch-2.56.0" || exit 1
-make
+
+mkdir -p build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build .
