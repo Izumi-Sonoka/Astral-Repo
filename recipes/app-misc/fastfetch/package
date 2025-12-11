@@ -1,8 +1,13 @@
 #!/bin/sh
 set -e
 
+echo "Making the necessary folders..."
+cd fastfetch-2.56.0
+mkdir -pv build
+cd build
+
 echo "Cmake..."
-cmake -DCMAKE_BUILD_TYPE=Release
+cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 
 mkdir -p "$PKGDIR/usr/bin"
