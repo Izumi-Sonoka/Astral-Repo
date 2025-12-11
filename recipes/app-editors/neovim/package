@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/sh
 
 echo "Changing Dir to $PKG.."
 cd neovim
