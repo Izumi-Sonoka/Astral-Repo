@@ -1,9 +1,6 @@
 #!/bin/sh
 set -e
 
-echo "Changing Dir to build..."
-cd build
-
 echo "Cmake..."
 cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build .
