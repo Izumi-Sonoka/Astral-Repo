@@ -2,8 +2,8 @@
 set -e
 
 echo "Downloading $pkg..."
-wget https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.56.0.tar.gz -o fastfetch.tar.gz
+wget https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/2.56.0.tar.gz
 
 echo "Extracting FastFetch..."
-tar -xvf "fastfetch.tar.gz"
-cd fastfetch
+tar xf "2.56.0.tar.gz"
+cd fastfetch-2.56.0
