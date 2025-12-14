@@ -1,2 +1,2 @@
 make
-gcc
+gcc >= 12.0.0
