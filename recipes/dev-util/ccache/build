@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+PKG_NAME="ccache"
+PKG_VERSION=$(cat version)
+
+cd "${PKG_NAME}-${PKG_VERSION}"
+
+# Configure with CMake
+cmake -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_SYSCONFDIR=/etc \
+    -DENABLE_TESTING=OFF \
+    -DREDIS_STORAGE_BACKEND=OFF
+
+# Build
+cmake --build build
