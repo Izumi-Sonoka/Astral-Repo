@@ -1,0 +1,27 @@
+#!/bin/sh
+set -e
+
+PKG_NAME="ccache"
+PKG_VERSION=$(cat version)
+SOURCE_DIR="${PKG_NAME}-${PKG_VERSION}"
+
+cd "$SOURCE_DIR"
+
+# Install to PKGDIR
+cmake --install build --prefix "$PKGDIR/usr"
+
+# Create symlinks for compiler wrappers
+mkdir -p "$PKGDIR/usr/lib/ccache/bin"
+
+for compiler in gcc g++ cc c++ clang clang++; do
+    ln -sf /usr/bin/ccache "$PKGDIR/usr/lib/ccache/bin/$compiler"
+done
+
+# Install default config
+mkdir -p "$PKGDIR/etc/ccache"
+cat > "$PKGDIR/etc/ccache/ccache.conf" <<CONF
+# ccache configuration for Astaraxia
+max_size = 6.0G
+compression = true
+compression_level = 6
+CONF
