@@ -1,2 +1,2 @@
-zlib
+cmake >= 3.18
 zstd
