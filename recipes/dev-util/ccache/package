@@ -7,8 +7,8 @@ SOURCE_DIR="${PKG_NAME}-${PKG_VERSION}"
 
 cd "$SOURCE_DIR"
 
-# Install to DESTDIR (NOT PKGDIR for cmake!)
-# CMAKE uses DESTDIR, not --prefix for staged installs
+# Install to staging directory using DESTDIR
+# This will install to $PKGDIR/usr/bin/ccache (correct!)
 DESTDIR="$PKGDIR" cmake --install build
 
 # Create symlinks for compiler wrappers
@@ -26,3 +26,5 @@ max_size = 5.0G
 compression = true
 compression_level = 6
 CONF
+
+echo "ccache package script completed successfully"
