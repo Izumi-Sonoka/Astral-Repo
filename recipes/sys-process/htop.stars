@@ -1,0 +1,35 @@
+$PKG.Metadata: {
+    VERSION = "3.4.1"
+    DESCRIPTION = ""
+    HOMEPAGE = ""
+    CATEGORY = "app-misc"
+};
+
+$PKG.Depend {
+    $PKG.Depend.BDepends {
+        gcc make
+    };
+
+    $PKG.Depend.RDepends {
+    ncurses
+    };
+};
+
+$PKG.Sources {
+    urls = "https://github.com/htop-dev/htop/releases/download/3.4.1/htop-3.4.1.tar.xz"
+};
+
+$PKG.Checksums {
+    sha256:904f7d4580fc11cffc7e0f06895a4789e0c1c054435752c151e812fead9f6220 htop-3.4.1.tar.xz
+};
+
+$PKG.Build {
+    cd htop-3.4.1
+    ./configure --prefix=/usr
+    make -j$(nproc)
+};
+
+$PKG.Package {
+    cd htop-3.4.1
+    make DESTDIR="$PKGDIR" install
+};
