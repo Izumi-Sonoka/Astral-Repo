@@ -1,0 +1,46 @@
+$PKG.Metadata: {
+    VERSION = "1.47.3"
+    DESCRIPTION = "The Ext2/Ext3/Ext4 Filesystem Utilities (e2fsprogs) contain all of the standard utilities for creating, fixing, configuring, and debugging ext2, ext3, and ext4 filesystems."
+    HOMEPAGE = "https://e2fsprogs.sourceforge.net/"
+    CATEGORY = "sys-fs"
+};
+
+$PKG.Depend {
+    $PKG.Depend.BDepends {
+        gcc make
+    };
+
+    $PKG.Depend.RDepends {
+    };
+};
+
+$PKG.Sources {
+    urls = "https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.47.3/e2fsprogs-1.47.3.tar.gz"
+};
+
+$PKG.Checksums {
+    sha256:2f5164e64dd7d91eadd1e0e8a77d92c06dd7837bb19f1d9189ce1939b363d2b4 e2fsprogs-1.47.3.tar.gz
+};
+
+$PKG.Build {
+    cd e2fsprogs-1.47.3
+    mkdir -v build
+    cd build
+    ../configure --prefix=/usr           \
+                 --sysconfdir=/etc       \
+                 --enable-elf-shlibs     \
+                 --disable-libblkid      \
+                 --disable-libuuid       \
+                 --disable-uuidd         \
+                 --disable-fsck
+    make -j$(nproc)
+};
+
+$PKG.Package {
+    cd e2fsprogs-1.47.3/build
+    make DESTDIR="$PKGDIR" install
+    rm -fv "$PKGDIR"/usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+    gunzip -v "$PKGDIR"/usr/share/info/libext2fs.info.gz
+    install-info --dir-file="$PKGDIR"/usr/share/info/dir \
+                 "$PKGDIR"/usr/share/info/libext2fs.info
+};
